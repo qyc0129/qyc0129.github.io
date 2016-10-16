@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Blog Restart"/>
+  <meta property="og:title" content="sklearn-install"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="Slow&#39;s River"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Blog Restart</p>
+          <p class="title">sklearn-install</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -100,14 +100,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2016-10-14</span>
+            <span class="date">2016-10-13</span>
             <span class="time">11:23:13</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/Blog/">Blog</a>
+<a href="/categories/coding/">coding</a>
 </span>
           
         </div>
@@ -116,14 +116,49 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/Blog/">#Blog</a>
+<a class="tag" href="/tags/machine-learning/">#machine learning</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>#Blog Restart<br>在DigitalOcean越来越慢的情况下，今天中午给Centos更换内核后出现了错误，疑似网卡在更换kernel后无法使用，一番折腾后还是各种Module错误，加上DO之前的100刀优惠已经过了一年失效，决定放弃DO的VPS。<br><a id="more"></a><br>一番折腾之后换到了Github上挂着博客，全免费还是非常良心的。准备先恢复下之前的文章吧。</p>
+          <p>官方文档：<a href="http://scikit-learn.org/stable/install.html" target="_blank" rel="external">http://scikit-learn.org/stable/install.html</a><br>Scikit-learn requires:<br>•    Python (&gt;= 2.6 or &gt;= 3.3),<br>•    NumPy (&gt;= 1.6.1),<br>•    SciPy (&gt;= 0.9).<br>使用的环境是python3.4<br>安装Scipy时报错 出现NOT AVAILABLE错误  查看错误代码后发现应该先安装Numpy<br>安装Numpy时较为顺利，直接pip install numpy 等待安装完成<br>接着重新安装Scipy，pip install scipy 安装成功<br><a id="more"></a><br>环境准备就绪 安装scikit-learn<br>直接pip install scikit-learn 出现unable to find   vcvarsall.bat<br>看来又是vc编译的问题….（SET VS90COMNTOOLS=%VS120COMNTOOLS%）<br>查阅后发现方法一：安装MinGW  </p>
+<ol>
+<li>首先安装MinGW，在MinGW的安装目录下找到bin的文件夹，找到  mingw32-make.exe，复制一份更名为make.exe；  </li>
+<li>把MinGW的路径添加到环境变量path中，比如我把MinGW安装到D:  \MinGW\中，就把D:\MinGW\bin添加到path中；  </li>
+<li>打开命令行窗口，在命令行窗口中进入到要安装代码的目录下；  </li>
+<li>输入如下命令就可以安装了。  </li>
+<li>setup.py install build –compiler=mingw32  </li>
+</ol>
+<p>然而尝试后以失败告终。。  </p>
+<p>接着搜索在知乎上看到了pip install lxml失败报同样错误的问题<br>（<a href="http://www.zhihu.com/question/26857761）" target="_blank" rel="external">http://www.zhihu.com/question/26857761）</a><br>发现方法二：<br>将Python34/Lib/distutils/msvc9compiler.py文件中的<br>vc_env = query_vcvarsall(VERSION, plat_spec)<br>为：<br>如果安装的是VS2014，则VERSION为13.0；<br>如果安装的是VS2013，则VERSION为12.0；<br>如果安装的是VS2012，则VERSION为11.0；<br>如果安装的是VS2010，则VERSION为10.0；<br>如果安装的是VS2008，则VERSION为9.0。<br>像我的安装的是VS2013，则<br>vc_env = query_vcvarsall(12.0, plat_spec)  </p>
+<p>接着重新pip安装 成功  </p>
+<p>在python中import sklearn发现报错！  </p>
+<pre><code>1.    &gt;&gt;&gt; import sklearn  
+2.    Traceback (most recent call last):  
+3.      File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  
+4.      File &quot;sklearn/__init__.py&quot;, line 37, in &lt;module&gt;  
+5.    from . import __check_build  
+6.      File &quot;sklearn/__check_build/__init__.py&quot;, line 46, in &lt;module&gt;  
+7.    raise_build_error(e)  
+8.      File &quot;sklearn/__check_build/__init__.py&quot;, line 41, in raise_build_error  
+9.    %s&quot;&quot;&quot; % (e, local_dir, &apos;&apos;.join(dir_content).strip(), msg))  
+10.    ImportError: No module named _check_build  
+11.    ___________________________________________________________________________  
+12.    Contents of sklearn/__check_build:  
+13.    __init__.py   __init__.pyc  _check_build.c  
+14.    _check_build.pyx  setup.py  setup.pyc  
+15.    ___________________________________________________________________________  
+16.    It seems that scikit-learn has not been built correctly.  
+17.      
+18.    If you have installed scikit-learn from source, please do not forget  
+19.    to build the package before using it: run `python setup.py install` or  
+20.    `make` in the source directory.  
+21.      
+22.    If you have used an installer, please check that it is suited for your  
+23.    Python version, your operating system and your platform.  
+</code></pre><p>后来发现可能是编译器没有重启 把命令提示行全关闭后重新import sklearn 成功</p>
 
         </div>
       </div>

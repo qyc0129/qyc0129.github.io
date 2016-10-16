@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="几个byrbbs&amp;others爬虫思路"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Slow&#39;s River"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.comundefined"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Slow&#39;s River" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Slow's River</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">几个byrbbs&amp;others爬虫思路</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/qyc0129">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:406855638@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By John Doe</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2016-09-15</span>
+            <span class="time">11:23:13</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/coding/">coding</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/爬虫-byr-bbs/">#爬虫 byr bbs</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>为了elasticsearch的搜索数据写了几个爬虫，下面分析一下思路和写法  。</p>
+<pre><code>    import requests
+    import urllib3
+    import urllib.request
+    import sys, urllib
+    from lxml import html
+    from bs4 import BeautifulSoup
+    import re
+from datetime import datetime
+from elasticsearch import Elasticsearch
+import time
+from scrapy.spider import Spider
+import string
+data = {&quot;id&quot;:&quot;&quot;,&quot;passwd&quot;:&quot; &quot;}
+s = requests.Session()
+result =s.post(&quot;http://m.byr.cn/user/login&quot;,data)
+print(result)
+def work(p):
+q=str(p)
+es = Elasticsearch()
+url = &quot;http://m.byr.cn/board/Food/1?p=&quot;+q #网页地址
+wp=s.get(url)
+cont=wp.content.decode(&quot;utf-8&quot;)
+   ## print(cont)
+soup=BeautifulSoup(cont,&quot;lxml&quot;)
+   ## print(&apos;\n&apos;)
+#print(soup.prettify())
+#print(&apos;\n&apos;)
+   # print(&apos;\n&apos;)
+url_list = soup.findAll(name=&apos;a&apos;,href=re.compile(&apos;article&apos;))
+url1=[]
+i=0
+list=[]
+for each_url in url_list:
+str_url = str(each_url).split(&apos;&quot;&apos;)
+list.append(str_url[1])
+print(str_url[1])
+list.remove(list[0])
+print(list)
+st1=&apos;&apos;
+for link in soup.findAll(&apos;a&apos;):
+st2=str(link.string)
+st1=st1+st2
+st3=&apos;●&apos;
+st4=st1[st1.find(st3)+1:]
+st5=re.split(&apos;●|Re|├&apos;,st4)
+length=min(len(list),len(st5))
+print(st5)
+if length&gt;0:
+for i in range(0,length):
+es.index(index=&quot;byr&quot;, doc_type=&quot;info&quot;, id=datetime.now(),body={&quot;title&quot;:st5[i], &quot;timestamp&quot;: datetime.now(),&quot;url&quot;:&quot;http://m.byr.cn&quot;+list[i]})
+for v in range(1,37):
+work(v)
+</code></pre><a id="more"></a>
+<p>由于byrbbs需要登录，这里采用手机版的登录页面，直接post账号密码过去就可以登录了。<br>接着定义函数work函数，接受一个参数p为Food版的页码，由于接收的为int型，需要用str函数转换成string型才能加到url后面，接着get该URL的网页，使用美丽汤处理一下。<br>通过对网页的分析，得出url和标题都存在<a></a>标签中。<br>先用美丽汤得到url的一部分</p>
+<pre><code>url_list = soup.findAll(name=&apos;a&apos;,href=re.compile(&apos;article&apos;))
+</code></pre><p>依次加入到list中，又因为有非帖子的链接，观察后remove掉第一个值。<br>接着处理标题，同样处理a标签，为了除去噪音，我们先相加得到一个长的字符串。<br>然后通过观察，用特殊的●|Re|├分隔符对字符串进行分割，得到的就是各个标题了。<br>对应标题循环es写入数据，爬虫结束。</p>
+<pre><code>data = {&quot;id&quot;:&quot;“,&quot;passwd&quot;:&quot;&quot;}
+s = requests.Session()
+result =s.post(&quot;http://m.byr.cn/user/login&quot;,data)
+print(result)
+es = Elasticsearch()
+def work(ti,p):
+q=str(p)
+id1=ti+q
+tit=&quot;/article/&quot;+ti+&quot;?au=&quot;
+url = &quot;http://m.byr.cn/article/&quot;+ti+&quot;/&quot;+q
+wp=s.get(url)
+cont=wp.content.decode(&quot;utf-8&quot;)
+print(cont)
+title=re.search(&apos;&lt;li class=&quot;f&quot;&gt;(.*?)&lt;/li&gt;&apos;, cont)
+page=re.search(&apos;&lt;div class=&quot;sp&quot;&gt;(.*?)&lt;/div&gt;&apos;, cont)
+if(title is None):
+    return
+estitle=str(title.group(1))
+espage=str(page.group(0))
+
+print(estitle)
+print(espage)
+#es.indices.create(index=&apos;byrbbs&apos;,ignore=400)
+es.index(index=&quot;byrbbs&quot;, doc_type=&quot;info&quot;, id=id1,body={&quot;title&quot;:estitle, &quot;timestamp&quot;: datetime.now(),&quot;url&quot;:url,&quot;page&quot;:espage})
+
+#soup=BeautifulSoup(cont,&quot;lxml&quot;)
+#print(&apos;\n&apos;)
+#print(soup.prettify())
+for i in range(18300,19300):
+work(&quot;BBShelp&quot;,i)
+</code></pre><p>接着第二个爬虫，还是byrbbs的，思路有所不同。<br>是按照版块&amp;帖子的ID进行爬取。</p>
+<pre><code>import requests
+import re
+from elasticsearch import Elasticsearch
+from datetime import datetime
+def searchtitle(t1):
+    txt=t1
+    re1=&apos;.*?&apos;  # Non-greedy match on filler
+    re2=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re3=&apos;.*?&apos;  # Non-greedy match on filler
+    re4=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re5=&apos;.*?&apos;  # Non-greedy match on filler
+    re6=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re7=&apos;.*?&apos;  # Non-greedy match on filler
+    re8=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re9=&apos;.*?&apos;  # Non-greedy match on filler
+    re10=&apos;(&quot;.*?&quot;)&apos; # Double Quote String 1
+    rg = re.compile(re1+re2+re3+re4+re5+re6+re7+re8+re9+re10,re.IGNORECASE|re.DOTALL)
+    m = rg.search(txt)
+    if m:
+        string1=m.group(1)
+        print (&quot;(&quot;+string1+&quot;)&quot;+&quot;\n&quot;)
+        return (&quot;(&quot;+string1+&quot;)&quot;+&quot;\n&quot;)
+def searchurl(t2):
+    re1=&apos;.*?&apos;  # Non-greedy match on filler
+    re2=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re3=&apos;.*?&apos;  # Non-greedy match on filler
+    re4=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re5=&apos;.*?&apos;  # Non-greedy match on filler
+    re6=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re7=&apos;.*?&apos;  # Non-greedy match on filler
+    re8=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re9=&apos;.*?&apos;  # Non-greedy match on filler
+    re10=&apos;&quot;.*?&quot;&apos;   # Uninteresting: string
+    re11=&apos;.*?&apos; # Non-greedy match on filler
+    re12=&apos;(&quot;.*?&quot;)&apos; # Double Quote String 1
+
+    rg = re.compile(re1+re2+re3+re4+re5+re6+re7+re8+re9+re10+re11+re12,re.IGNORECASE|re.DOTALL)
+    m = rg.search(t2)
+    if m:
+        string1=m.group(1)
+        print (&quot;(&quot;+string1+&quot;)&quot;+&quot;\n&quot;)
+        return  &quot;(&quot;+string1+&quot;)&quot;+&quot;\n&quot;
+def se(p):
+    s=requests.session()
+    q=str(p)
+    url=&quot;http://list.iqiyi.com/www/1/1-------------11-&quot;+q+&quot;-1-iqiyi--.html&quot;
+    wp=s.get(url)
+    cont=wp.content.decode(&quot;utf-8&quot;)
+    print(cont)
+    page=re.findall(&apos;&lt;img (.*?)&gt;&apos;, cont,re.S)
+    for ii in range(1,len(page)):
+        searchurl(page[ii])
+        searchtitle(page[ii])
+        es.index(index=&quot;film&quot;, doc_type=&quot;info&quot;, id=datetime.now(),body={&quot;title&quot;:searchtitle(page[ii]), &quot;timestamp&quot;: datetime.now(),&quot;url&quot;:searchurl(page[ii])})
+es=Elasticsearch()
+es.index(index=&quot;film&quot;,doc_type=&quot;info&quot;,body={})
+for i in range(1,30):
+    se(i)
+</code></pre><p>第三个爬虫是爱奇艺的<br>用了<a href="http://www.txt2re.com/来写正则表达式的筛选，非常方便，效率感天动地。" target="_blank" rel="external">http://www.txt2re.com/来写正则表达式的筛选，非常方便，效率感天动地。</a></p>
+<p>链接：<a href="https://github.com/qyc0129/byr-bbs-scrapy" target="_blank" rel="external">https://github.com/qyc0129/byr-bbs-scrapy</a></p>
+<p>下次可能会使用scrapy框架，虽然不太喜欢。。</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

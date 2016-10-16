@@ -1,433 +1,525 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Slow&#39;s River"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="Slow&#39;s River"/>
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://yoursite.comundefined"/>
   
-  <title>Slow&#39;s River</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Slow's River">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Slow's River">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Slow's River">
-  
-    <link rel="alternative" href="/atom.xml" title="Slow&#39;s River" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/img/favicon.png">
-  
-  
-      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  
-    
-    
+    <link rel="alternate" href="/atom.xml" title="Slow&#39;s River" type="application/atom+xml">
   
   
-      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    <link rel="icon" href="/favicon.png">
   
-  <!-- 加载特效 -->
-    <script src="/js/pace.js"></script>
-    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
-  <script>
-      var yiliaConfig = {
-          rootUrl: '/',
-          fancybox: true,
-          animate: true,
-          isHome: true,
-          isPost: false,
-          isArchive: false,
-          isTag: false,
-          isCategory: false,
-          open_in_new: false
-      }
-  </script>
+
+  <!-- Site Title -->
+  <title>Slow's River</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
 </head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            
-            <img lazy-src="/img/head.jpg" class="js-avatar">
-            
-        </a>
 
-        <hgroup>
-          <h1 class="header-author"><a href="/" title="Hi Mate">John Doe</a></h1>
-        </hgroup>
+  <body>
+    <!-- Page Header -->
 
-        
-        
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
 
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/Home">首页</a></li>
-                        
-                            <li><a href="/works">文章</a></li>
-                        
-                            <li><a href="/about">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
-                            
-                                <a class="fl github" target="_blank" href="https://github.com/qyc0129" title="github">github</a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://qyc0129.github.io/">name</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">flowing so slowly</div>
-                </section>
-                
-            </div>
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Slow&#39;s River</p>
+          <p class="subtitle"></p>
         </div>
-    </header>                
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">John Doe</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                
-                    <img lazy-src="/img/head.jpg" class="js-avatar">
-                
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="Me">John Doe</a></h1>
-            </hgroup>
+        <div class="site-menu with-background-image">
+          <ul>
             
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/Home">首页</a></li>
-                
-                    <li><a href="/works">文章</a></li>
-                
-                    <li><a href="/about">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                <div class="social">
-                    
-                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
-                    
-                        <a class="github" target="_blank" href="https://github.com/qyc0129" title="github">github</a>
-                    
-                </div>
-            </nav>
-        </header>                
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/qyc0129">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:406855638@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
     </div>
-</nav>
-      <div class="body-wrap">
-  
-    <article id="post-svd&amp;machine learning" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/15/svd&machine learning/" class="article-date">
-      <time datetime="2016-10-15T02:49:28.768Z" itemprop="datePublished">2016-10-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+  </div>
+</header>
+
+
+<!-- Home Page Post List -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 col-md-offset-1">
       
+        <div class="post-item-wrapper">
+  <a href="/2016/10/14/restart-20161014/" class="post-title">
+      Blog Restart
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-10-14</div>
+      <div class="categories">
+        
           
-        <p><strong>svd&amp;machine learning</strong><br>-</p>
+
+<a href="/categories/Blog/">Blog</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo"><p>#Blog Restart<br>在DigitalOcean越来越慢的情况下，今天中午给Centos更换内核后出现了错误，疑似网卡在更换kernel后无法使用，一番折腾后还是各种Module错误，加上DO之前的100刀优惠已经过了一年失效，决定放弃DO的VPS。<br></div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/Blog/">Blog</a>
+
+
+      
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-item-wrapper">
+  <a href="/2016/10/13/sklearn-install/" class="post-title">
+      sklearn-install
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-10-13</div>
+      <div class="categories">
+        
+          
+
+<a href="/categories/coding/">coding</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo"><p>官方文档：<a href="http://scikit-learn.org/stable/install.html">http://scikit-learn.org/stable/install.html</a><br>Scikit-learn requires:<br>•    Python (&gt;= 2.6 or &gt;= 3.3),<br>•    NumPy (&gt;= 1.6.1),<br>•    SciPy (&gt;= 0.9).<br>使用的环境是python3.4<br>安装Scipy时报错 出现NOT AVAILABLE错误  查看错误代码后发现应该先安装Numpy<br>安装Numpy时较为顺利，直接pip install numpy 等待安装完成<br>接着重新安装Scipy，pip install scipy 安装成功<br></div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/machine-learning/">machine learning</a>
+
+
+      
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-item-wrapper">
+  <a href="/2016/09/15/scrapyN/" class="post-title">
+      几个byrbbs&amp;others爬虫思路
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-09-15</div>
+      <div class="categories">
+        
+          
+
+<a href="/categories/coding/">coding</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo"><p>为了elasticsearch的搜索数据写了几个爬虫，下面分析一下思路和写法  。</p>
+<pre><code>    import requests
+    import urllib3
+    import urllib.request
+    import sys, urllib
+    from lxml import html
+    from bs4 import BeautifulSoup
+    import re
+from datetime import datetime
+from elasticsearch import Elasticsearch
+import time
+from scrapy.spider import Spider
+import string
+data = {&quot;id&quot;:&quot;&quot;,&quot;passwd&quot;:&quot; &quot;}
+s = requests.Session()
+result =s.post(&quot;http://m.byr.cn/user/login&quot;,data)
+print(result)
+def work(p):
+q=str(p)
+es = Elasticsearch()
+url = &quot;http://m.byr.cn/board/Food/1?p=&quot;+q #网页地址
+wp=s.get(url)
+cont=wp.content.decode(&quot;utf-8&quot;)
+   ## print(cont)
+soup=BeautifulSoup(cont,&quot;lxml&quot;)
+   ## print(&apos;\n&apos;)
+#print(soup.prettify())
+#print(&apos;\n&apos;)
+   # print(&apos;\n&apos;)
+url_list = soup.findAll(name=&apos;a&apos;,href=re.compile(&apos;article&apos;))
+url1=[]
+i=0
+list=[]
+for each_url in url_list:
+str_url = str(each_url).split(&apos;&quot;&apos;)
+list.append(str_url[1])
+print(str_url[1])
+list.remove(list[0])
+print(list)
+st1=&apos;&apos;
+for link in soup.findAll(&apos;a&apos;):
+st2=str(link.string)
+st1=st1+st2
+st3=&apos;●&apos;
+st4=st1[st1.find(st3)+1:]
+st5=re.split(&apos;●|Re|├&apos;,st4)
+length=min(len(list),len(st5))
+print(st5)
+if length&gt;0:
+for i in range(0,length):
+es.index(index=&quot;byr&quot;, doc_type=&quot;info&quot;, id=datetime.now(),body={&quot;title&quot;:st5[i], &quot;timestamp&quot;: datetime.now(),&quot;url&quot;:&quot;http://m.byr.cn&quot;+list[i]})
+for v in range(1,37):
+work(v)
+</code></pre></div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/爬虫-byr-bbs/">爬虫 byr bbs</a>
+
+
+      
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-item-wrapper">
+  <a href="/2016/09/08/json elasticsearch/" class="post-title">
+      Elasitcsearch融合json实现
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-09-08</div>
+      <div class="categories">
+        
+          
+
+<a href="/categories/coding/">coding</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo"><p>想实现一个web版的搜索功能，一开始准备用flask和html交互，研究了后干脆使用elasticsearch的js版控件，省了许多事。  </p>
+<hr>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/browser-builds.html">https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/browser-builds.html</a></p>
+<blockquote>
+<pre><code>Browser Buildsedit  
+    We also provide builds of the elasticsearch.js &gt; client for use in the browser.  
+     These versions of the client are currently experimental. We test these builds  using saucelabs in Chrome, Firefox, and Internet Explorer 10, and 11.  
+    While there is a way to get it working in IE 9, the browser severely limits what you can do with cross-domain requests. Because of these limits, many of the API calls and other functionality do not work.
+</code></pre></blockquote>
+<p>直接下载v11.0.1的zip文件，选择其中的elasticsearch.js文件复制到main.js同目录下 </p></div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/Elasticsearch-json/">Elasticsearch json</a>
+
+
+      
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-item-wrapper">
+  <a href="/2016/06/07/arduino/" class="post-title">
+      Arduino节奏大师
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-06-07</div>
+      <div class="categories">
+        
+          
+
+<a href="/categories/coding/">coding</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo">No Post Excerpt</div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/Arduino/">Arduino</a>
+
+
+      
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-item-wrapper">
+  <a href="/2016/05/18/VMware VirtualBOX Docker No KLEE/" class="post-title">
+      VMware?VirtualBOX?Docker?No KLEE!
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-05-18</div>
+      <div class="categories">
+        
+          
+
+<a href="/categories/coding/">coding</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo"><p><strong>- 引言：</strong></p>
+<p>四月份折腾了有段时间的KLEE因为各种原因终于宣告流产了，也算是放下了些东西。过程还是很有趣的，学习了有趣的基于VirtualBOX的Docker虚拟机，也稍微和大牛交流请教了些，下面随便说点有关虚拟机的东西。</p>
+<p><strong>- PartI</strong></p>
+<p>在虚拟机的使用手感上，感觉VMware还是更胜一筹，毕竟有强大的VMwareTools,有优秀的主从机文件拖拽功能和分辨率调整功能，尽管有时候不是那么好用，会出现无法自动安装的情况，还要加载镜像自己安装。期间出现过诸多问题，VMwareTools对Ubuntu14的支持不是很好，各种折腾也没有完美安装，最终换用了Ubuntu12。</p></div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/KLEE-VM/">KLEE VM</a>
+
+
+      
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-item-wrapper">
+  <a href="/2016/04/12/追忆-易语言与那些过往/" class="post-title">
+      追忆-易语言与那些过往
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-04-12</div>
+      <div class="categories">
+        
+          
+
+<a href="/categories/coding/">coding</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo"><p>   今天会想起来说说和易语言有关的事情，也是因为有个朋友托我实现个图片抽奖的小功能，不想写GUI就准备重新用易语言写这么个东西。然而写着写着连循环都想不起怎么用易语言写了，思考了半天想到了</p>
+<pre><code>时钟1.时钟频率=300 or时钟1.时钟频率=0
+</code></pre><p>的写法。</p>
+<ul>
+<li><strong>In The Past</strong></li>
+</ul>
+<p>  最早接触到易语言应该是07、08年吧，第一次接触到就觉得这个语言好亲切，图形界面很方便，比VB舒服，渐渐地也接触到了super-ec模块这种红极一时的东西，期间也爆出了模块可以被轻松反编译破解的大BUG。初次接触E并没有过于深入，半捡半丢地过了几年之后，大概在10年重捡起了它，然后也算是和朋友在bnb圈子里搞出了些名堂。</p></div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/E语言-易语言/">E语言 易语言</a>
+
+
+      
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-item-wrapper">
+  <a href="/2016/04/05/ubuntu scrapy environment/" class="post-title">
+      Ubuntu 下Scrapy环境搭建
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-04-05</div>
+      <div class="categories">
+        
+          
+
+<a href="/categories/coding/">coding</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo"><p>Ubuntu下搭建Scrapy环境遇到的问题&amp;解决<br> QA<br>Q1.为什么选择Ubuntu环境<br>A:windows下的Scrapy实在是太难搭啦，转投Linux。<br>选择了Ubuntu12是因为Ubuntu14不是很兼容VMwareTools 为了图省事我直接用了12，另外发现shadowsocks勾选局域网链接后可以在Ubuntu虚拟机中设置代理直接穿透出来。<br>下面开始搭建环境<br>Ubuntu自带Python<br>$python</p>
+<blockquote>
+<blockquote>
+<p>import xml<br>import OpenSSL<br>发现已经自带两个依赖</p>
+</blockquote>
+</blockquote></div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/Linux-Scrapy/">Linux Scrapy</a>
+
+
+      
+    </div>
+  </div>
+</div>
+
+      
+        <div class="post-item-wrapper">
+  <a href="/2016/03/28/svd&machine learning/" class="post-title">
+      svd&amp;machine learning
+  </a>
+  <div class="post-excerpt">
+    <!-- Post Date and Categories -->
+    <div class="date-and-category">
+      <div class="date">2016-03-28</div>
+      <div class="categories">
+        
+          
+
+<a href="/categories/coding/">coding</a>
+
+        
+      </div>
+    </div>
+    <!-- Post Excerpt -->
+    <div class="excerpt typo"><p><strong>svd&amp;machine learning</strong><br>-</p>
 <ul>
 <li>引言</li>
 </ul>
 <p>先来看一个例子<br><img src="http://slowshiki.cn/pagepic/1/1.jpg" alt=""></p>
 <p>假设该矩阵表示6名观众对4部电影《肖申克的救赎》、《非常嫌疑犯》、《教父》以及《谋杀绿脚趾》的评分。<br>《教父》看起来获得了最高的平均分1.5分，而《肖申克的救赎》得分较低有0.5分的平均得分。<br>我们进一步将矩阵分解</p>
 <p><img src="http://slowshiki.cn/pagepic/1/2.jpg" alt=""></p>
-<p>分别对分解出的三个矩阵命名为A/B/C矩阵。不难看出A矩阵和C矩阵都是由0和1组成的布尔矩阵，B矩阵则是对角矩阵。</p>
-<p>C矩阵体现了影片（列）与类型（行）的关系：《肖申克的救赎》与《非常嫌疑犯》分别属于不同题材的电影，即戏剧题材和犯罪题材【ps:个人认为《肖申克的救赎》应该也与《非常嫌疑犯》一样属于犯罪题材，作者举例可能有些不当】，《教父》同时属于两种题材，《谋杀绿脚趾》在属于犯罪题材的同时又引入了新的喜剧题材。</p>
-<p>A矩阵表达了这6名观众对电影题材的偏好，观众A/D/E喜爱喜剧题材，观众B/D/E喜爱犯罪题材，观众C/E/F热衷于喜剧。</p>
-<p>B矩阵表达了在决定观众对影片的喜好时，犯罪题材所起的作用是其他两种题材的两倍。</p>
-<ul>
-<li>奇异值</li>
-<li>奇异值分解（Singular Value Decomposition）是线性代数中一种重要的矩阵分解，是矩阵分析中正规矩阵酉对角化的推广。在信号处理、统计学等领域有重要应用。<br>A=U<em>R</em>V<br>假设A是一个M <em> N的矩阵，那么得到的U是一个M </em> L的方阵（里面的向量是正交的，U里面的向量称为左奇异向量），R是一个L <em> L的矩阵（除了对角线的元素都是0，对角线上的元素称为奇异值），V 是一个L </em> N的矩阵，里面的向量也是正交的，V里面的向量称为右奇异向量）。<br>那么奇异值和特征值是怎么对应起来的呢？首先，我们将一个矩阵A的转置 * A，将会得到一个方阵，我们用这个方阵求特征值可以得到： </li>
-</ul>
-<p><img src="http://slowshiki.cn/pagepic/1/3.jpg" alt=""></p>
-<p> 这里得到的v，就是右奇异向量。此外</p>
-<p><img src="http://slowshiki.cn/pagepic/1/4.jpg" alt=""></p>
-<p>这里的σ就是上面说的奇异值，u就是上面说的左奇异向量。奇异值σ跟特征值类似，在矩阵Σ中也是从大到小排列，而且σ的减少特别的快，在很多情况下，前10%甚至1%的奇异值的和就占了全部的奇异值之和的99%以上了。也就是说，我们也可以用前r大的奇异值来近似描述矩阵，这里定义一下部分奇异值分解：</p>
-<p><img src="http://slowshiki.cn/pagepic/1/5.jpg" alt=""></p>
-<p>r是一个远小于m、n的数，这样矩阵的乘法看起来像是下面的样子：</p>
-<p><img src="http://slowshiki.cn/pagepic/1/6.jpg" alt=""></p>
-<p>后续<br> 在matlab中使用svd&amp;svds函数对第一个矩阵进行奇异值分解，得到的结果和书上编者给出的有较大的差距</p>
-<blockquote>
-<blockquote>
-<p>[U,S,V]=svds(a,3)</p>
-</blockquote>
-</blockquote>
-<p>U =</p>
-<p>   -0.1076    0.6224   -0.0327<br>   -0.4933   -0.2291    0.3227<br>   -0.0880   -0.2069   -0.5911<br>   -0.6010    0.3933    0.2901<br>   -0.1956    0.4155   -0.6238<br>   -0.5813   -0.4360   -0.2684</p>
-<p>S =</p>
-<pre><code>6.9232         0         0
-     0    1.9302         0
-     0         0    1.1593
-</code></pre><p>V =</p>
-<p>   -0.1306    0.7414   -0.3160<br>   -0.4840   -0.2816    0.5942<br>   -0.6147    0.4599    0.2782<br>   -0.6090   -0.3994   -0.6853</p>
-<p>可以看出奇异值分解得到的矩阵并不是由整数组成的矩阵，可以理解为编者为了让读者比较容易理解而特别设计的一个分解（逆分解合成）的例子。<br>虽然例子可能不成立，但毫无疑问，奇异值分解还是可以给我们对矩阵的分析提供很大的帮助的，从而使我们建立起基于SVD的根据用户偏好进行商品推荐的协同过滤推荐系统。<br>-</p>
-<ul>
-<li>引用：</li>
-</ul>
-<p>[1]《机器学习》-PeterFlach</p>
-<p>[2] 《强大的矩阵奇异值分解(SVD)及其应用》-LeftNotEasy</p>
+<p>分别对分解出的三个矩阵命名为A/B/C矩阵。不难看出A矩阵和C矩阵都是由0和1组成的布尔矩阵，B矩阵则是对角矩阵。</p></div>
+    <!-- Post Tags -->
+    <div class="tags">
+      
+        
+
+<a class="tag" href="/tags/machine-learning/">machine learning</a>
+
 
       
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-restart-20161014" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/14/restart-20161014/" class="article-date">
-      <time datetime="2016-10-14T15:46:11.740Z" itemprop="datePublished">2016-10-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>#Blog Restart<br>在DigitalOcean越来越慢的情况下，今天中午给Centos更换内核后出现了错误，疑似网卡在更换kernel后无法使用，一番折腾后还是各种Module错误，加上DO之前的100刀优惠已经过了一年失效，决定放弃DO的VPS。<br>一番折腾之后换到了Github上挂着博客，全免费还是非常良心的。准备先恢复下之前的文章吧。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
 </div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                &copy; 2016 Slow
-            </div>
-            <div class="footer-right">
-                Slow is Also Powered By <a href="http://hexo.io/" target="_blank"> Hexo</a> 
-            </div>
-        </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >到访数: 
-                            <span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>, </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量: 
-                            <span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
+
+      
     </div>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 col-md-offset-1">
+      <ul class="pagination">
+          
+          
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>
 
-    </div>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            var backgroundnum = 24;
-            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-        })
-    </script>
-
-
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
-</div>
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
 <script>
-    $(document).ready(function() {
-        if ($("#comments").length < 1) {
-            $("#scroll > a:nth-child(2)").hide();
-        };
-    })
-</script>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
-  <script language="javascript">
-    $(function() {
-        $("a[title]").each(function() {
-            var a = $(this);
-            var title = a.attr('title');
-            if (title == undefined || title == "") return;
-            a.data('title', title).removeAttr('title').hover(
-
-            function() {
-                var offset = a.offset();
-                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
-                    top: offset.top - a.outerHeight() - 15,
-                    left: offset.left + a.outerWidth()/2 + 1
-                }).fadeIn(function() {
-                    var pop = $(this);
-                    setTimeout(function() {
-                        pop.remove();
-                    }, pop.text().length * 800);
-                });
-            }, function() {
-                $("#anchortitlecontainer").remove();
-            });
-        });
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
     });
+  });
 </script>
 
-
-  </div>
-</body>
+  </body>
 </html>
+

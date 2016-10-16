@@ -2,16 +2,65 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2016/10/15/svd&machine%20learning/</loc>
+    <loc>http://yoursite.com/2016/10/13/sklearn-install/</loc>
     
-    <lastmod>2016-10-15T03:02:53.164Z</lastmod>
+    <lastmod>2016-10-16T03:23:06.052Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/09/15/scrapyN/</loc>
+    
+    <lastmod>2016-10-16T03:20:35.009Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/09/08/json%20elasticsearch/</loc>
+    
+    <lastmod>2016-10-16T03:16:02.671Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/06/07/arduino/</loc>
+    
+    <lastmod>2016-10-16T03:11:25.376Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/05/18/VMware%20VirtualBOX%20Docker%20No%20KLEE/</loc>
+    
+    <lastmod>2016-10-16T03:08:49.089Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/04/05/ubuntu%20scrapy%20environment/</loc>
+    
+    <lastmod>2016-10-16T03:06:21.674Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/04/12/%E8%BF%BD%E5%BF%86-%E6%98%93%E8%AF%AD%E8%A8%80%E4%B8%8E%E9%82%A3%E4%BA%9B%E8%BF%87%E5%BE%80/</loc>
+    
+    <lastmod>2016-10-16T03:05:33.537Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/03/28/svd&machine%20learning/</loc>
+    
+    <lastmod>2016-10-16T03:02:30.919Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2016/10/14/restart-20161014/</loc>
     
-    <lastmod>2016-10-14T15:41:49.648Z</lastmod>
+    <lastmod>2016-10-16T02:58:46.879Z</lastmod>
     
   </url>
   

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-15T03:02:53.164Z</updated>
+  <updated>2016-10-16T02:58:46.879Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,545 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2016/10/15/svd&amp;machine%20learning/"/>
-    <id>http://yoursite.com/2016/10/15/svd&amp;machine learning/</id>
-    <published>2016-10-15T02:49:28.768Z</published>
-    <updated>2016-10-15T03:02:53.164Z</updated>
+    <title>Blog Restart</title>
+    <link href="http://yoursite.com/2016/10/14/restart-20161014/"/>
+    <id>http://yoursite.com/2016/10/14/restart-20161014/</id>
+    <published>2016-10-14T15:46:11.740Z</published>
+    <updated>2016-10-16T02:58:46.879Z</updated>
+    
+    <content type="html"><![CDATA[<p>#Blog Restart<br>在DigitalOcean越来越慢的情况下，今天中午给Centos更换内核后出现了错误，疑似网卡在更换kernel后无法使用，一番折腾后还是各种Module错误，加上DO之前的100刀优惠已经过了一年失效，决定放弃DO的VPS。<br><a id="more"></a><br>一番折腾之后换到了Github上挂着博客，全免费还是非常良心的。准备先恢复下之前的文章吧。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#Blog Restart&lt;br&gt;在DigitalOcean越来越慢的情况下，今天中午给Centos更换内核后出现了错误，疑似网卡在更换kernel后无法使用，一番折腾后还是各种Module错误，加上DO之前的100刀优惠已经过了一年失效，决定放弃DO的VPS。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Blog" scheme="http://yoursite.com/categories/Blog/"/>
+    
+    
+      <category term="Blog" scheme="http://yoursite.com/tags/Blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sklearn-install</title>
+    <link href="http://yoursite.com/2016/10/13/sklearn-install/"/>
+    <id>http://yoursite.com/2016/10/13/sklearn-install/</id>
+    <published>2016-10-13T15:32:45.000Z</published>
+    <updated>2016-10-16T03:23:06.052Z</updated>
+    
+    <content type="html"><![CDATA[<p>官方文档：<a href="http://scikit-learn.org/stable/install.html" target="_blank" rel="external">http://scikit-learn.org/stable/install.html</a><br>Scikit-learn requires:<br>•    Python (&gt;= 2.6 or &gt;= 3.3),<br>•    NumPy (&gt;= 1.6.1),<br>•    SciPy (&gt;= 0.9).<br>使用的环境是python3.4<br>安装Scipy时报错 出现NOT AVAILABLE错误  查看错误代码后发现应该先安装Numpy<br>安装Numpy时较为顺利，直接pip install numpy 等待安装完成<br>接着重新安装Scipy，pip install scipy 安装成功<br><a id="more"></a><br>环境准备就绪 安装scikit-learn<br>直接pip install scikit-learn 出现unable to find   vcvarsall.bat<br>看来又是vc编译的问题….（SET VS90COMNTOOLS=%VS120COMNTOOLS%）<br>查阅后发现方法一：安装MinGW  </p>
+<ol>
+<li>首先安装MinGW，在MinGW的安装目录下找到bin的文件夹，找到  mingw32-make.exe，复制一份更名为make.exe；  </li>
+<li>把MinGW的路径添加到环境变量path中，比如我把MinGW安装到D:  \MinGW\中，就把D:\MinGW\bin添加到path中；  </li>
+<li>打开命令行窗口，在命令行窗口中进入到要安装代码的目录下；  </li>
+<li>输入如下命令就可以安装了。  </li>
+<li>setup.py install build –compiler=mingw32  </li>
+</ol>
+<p>然而尝试后以失败告终。。  </p>
+<p>接着搜索在知乎上看到了pip install lxml失败报同样错误的问题<br>（<a href="http://www.zhihu.com/question/26857761）" target="_blank" rel="external">http://www.zhihu.com/question/26857761）</a><br>发现方法二：<br>将Python34/Lib/distutils/msvc9compiler.py文件中的<br>vc_env = query_vcvarsall(VERSION, plat_spec)<br>为：<br>如果安装的是VS2014，则VERSION为13.0；<br>如果安装的是VS2013，则VERSION为12.0；<br>如果安装的是VS2012，则VERSION为11.0；<br>如果安装的是VS2010，则VERSION为10.0；<br>如果安装的是VS2008，则VERSION为9.0。<br>像我的安装的是VS2013，则<br>vc_env = query_vcvarsall(12.0, plat_spec)  </p>
+<p>接着重新pip安装 成功  </p>
+<p>在python中import sklearn发现报错！  </p>
+<pre><code>1.    &gt;&gt;&gt; import sklearn  
+2.    Traceback (most recent call last):  
+3.      File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  
+4.      File &quot;sklearn/__init__.py&quot;, line 37, in &lt;module&gt;  
+5.    from . import __check_build  
+6.      File &quot;sklearn/__check_build/__init__.py&quot;, line 46, in &lt;module&gt;  
+7.    raise_build_error(e)  
+8.      File &quot;sklearn/__check_build/__init__.py&quot;, line 41, in raise_build_error  
+9.    %s&quot;&quot;&quot; % (e, local_dir, &apos;&apos;.join(dir_content).strip(), msg))  
+10.    ImportError: No module named _check_build  
+11.    ___________________________________________________________________________  
+12.    Contents of sklearn/__check_build:  
+13.    __init__.py   __init__.pyc  _check_build.c  
+14.    _check_build.pyx  setup.py  setup.pyc  
+15.    ___________________________________________________________________________  
+16.    It seems that scikit-learn has not been built correctly.  
+17.      
+18.    If you have installed scikit-learn from source, please do not forget  
+19.    to build the package before using it: run `python setup.py install` or  
+20.    `make` in the source directory.  
+21.      
+22.    If you have used an installer, please check that it is suited for your  
+23.    Python version, your operating system and your platform.  
+</code></pre><p>后来发现可能是编译器没有重启 把命令提示行全关闭后重新import sklearn 成功</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;官方文档：&lt;a href=&quot;http://scikit-learn.org/stable/install.html&quot;&gt;http://scikit-learn.org/stable/install.html&lt;/a&gt;&lt;br&gt;Scikit-learn requires:&lt;br&gt;•    Python (&amp;gt;= 2.6 or &amp;gt;= 3.3),&lt;br&gt;•    NumPy (&amp;gt;= 1.6.1),&lt;br&gt;•    SciPy (&amp;gt;= 0.9).&lt;br&gt;使用的环境是python3.4&lt;br&gt;安装Scipy时报错 出现NOT AVAILABLE错误  查看错误代码后发现应该先安装Numpy&lt;br&gt;安装Numpy时较为顺利，直接pip install numpy 等待安装完成&lt;br&gt;接着重新安装Scipy，pip install scipy 安装成功&lt;br&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://yoursite.com/categories/coding/"/>
+    
+    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>几个byrbbs&amp;others爬虫思路</title>
+    <link href="http://yoursite.com/2016/09/15/scrapyN/"/>
+    <id>http://yoursite.com/2016/09/15/scrapyN/</id>
+    <published>2016-09-15T12:20:45.000Z</published>
+    <updated>2016-10-16T03:20:35.009Z</updated>
+    
+    <content type="html"><![CDATA[<p>为了elasticsearch的搜索数据写了几个爬虫，下面分析一下思路和写法  。</p>
+<pre><code>    import requests
+    import urllib3
+    import urllib.request
+    import sys, urllib
+    from lxml import html
+    from bs4 import BeautifulSoup
+    import re
+from datetime import datetime
+from elasticsearch import Elasticsearch
+import time
+from scrapy.spider import Spider
+import string
+data = {&quot;id&quot;:&quot;&quot;,&quot;passwd&quot;:&quot; &quot;}
+s = requests.Session()
+result =s.post(&quot;http://m.byr.cn/user/login&quot;,data)
+print(result)
+def work(p):
+q=str(p)
+es = Elasticsearch()
+url = &quot;http://m.byr.cn/board/Food/1?p=&quot;+q #网页地址
+wp=s.get(url)
+cont=wp.content.decode(&quot;utf-8&quot;)
+   ## print(cont)
+soup=BeautifulSoup(cont,&quot;lxml&quot;)
+   ## print(&apos;\n&apos;)
+#print(soup.prettify())
+#print(&apos;\n&apos;)
+   # print(&apos;\n&apos;)
+url_list = soup.findAll(name=&apos;a&apos;,href=re.compile(&apos;article&apos;))
+url1=[]
+i=0
+list=[]
+for each_url in url_list:
+str_url = str(each_url).split(&apos;&quot;&apos;)
+list.append(str_url[1])
+print(str_url[1])
+list.remove(list[0])
+print(list)
+st1=&apos;&apos;
+for link in soup.findAll(&apos;a&apos;):
+st2=str(link.string)
+st1=st1+st2
+st3=&apos;●&apos;
+st4=st1[st1.find(st3)+1:]
+st5=re.split(&apos;●|Re|├&apos;,st4)
+length=min(len(list),len(st5))
+print(st5)
+if length&gt;0:
+for i in range(0,length):
+es.index(index=&quot;byr&quot;, doc_type=&quot;info&quot;, id=datetime.now(),body={&quot;title&quot;:st5[i], &quot;timestamp&quot;: datetime.now(),&quot;url&quot;:&quot;http://m.byr.cn&quot;+list[i]})
+for v in range(1,37):
+work(v)
+</code></pre><a id="more"></a>
+<p>由于byrbbs需要登录，这里采用手机版的登录页面，直接post账号密码过去就可以登录了。<br>接着定义函数work函数，接受一个参数p为Food版的页码，由于接收的为int型，需要用str函数转换成string型才能加到url后面，接着get该URL的网页，使用美丽汤处理一下。<br>通过对网页的分析，得出url和标题都存在<a></a>标签中。<br>先用美丽汤得到url的一部分</p>
+<pre><code>url_list = soup.findAll(name=&apos;a&apos;,href=re.compile(&apos;article&apos;))
+</code></pre><p>依次加入到list中，又因为有非帖子的链接，观察后remove掉第一个值。<br>接着处理标题，同样处理a标签，为了除去噪音，我们先相加得到一个长的字符串。<br>然后通过观察，用特殊的●|Re|├分隔符对字符串进行分割，得到的就是各个标题了。<br>对应标题循环es写入数据，爬虫结束。</p>
+<pre><code>data = {&quot;id&quot;:&quot;“,&quot;passwd&quot;:&quot;&quot;}
+s = requests.Session()
+result =s.post(&quot;http://m.byr.cn/user/login&quot;,data)
+print(result)
+es = Elasticsearch()
+def work(ti,p):
+q=str(p)
+id1=ti+q
+tit=&quot;/article/&quot;+ti+&quot;?au=&quot;
+url = &quot;http://m.byr.cn/article/&quot;+ti+&quot;/&quot;+q
+wp=s.get(url)
+cont=wp.content.decode(&quot;utf-8&quot;)
+print(cont)
+title=re.search(&apos;&lt;li class=&quot;f&quot;&gt;(.*?)&lt;/li&gt;&apos;, cont)
+page=re.search(&apos;&lt;div class=&quot;sp&quot;&gt;(.*?)&lt;/div&gt;&apos;, cont)
+if(title is None):
+    return
+estitle=str(title.group(1))
+espage=str(page.group(0))
+
+print(estitle)
+print(espage)
+#es.indices.create(index=&apos;byrbbs&apos;,ignore=400)
+es.index(index=&quot;byrbbs&quot;, doc_type=&quot;info&quot;, id=id1,body={&quot;title&quot;:estitle, &quot;timestamp&quot;: datetime.now(),&quot;url&quot;:url,&quot;page&quot;:espage})
+
+#soup=BeautifulSoup(cont,&quot;lxml&quot;)
+#print(&apos;\n&apos;)
+#print(soup.prettify())
+for i in range(18300,19300):
+work(&quot;BBShelp&quot;,i)
+</code></pre><p>接着第二个爬虫，还是byrbbs的，思路有所不同。<br>是按照版块&amp;帖子的ID进行爬取。</p>
+<pre><code>import requests
+import re
+from elasticsearch import Elasticsearch
+from datetime import datetime
+def searchtitle(t1):
+    txt=t1
+    re1=&apos;.*?&apos;  # Non-greedy match on filler
+    re2=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re3=&apos;.*?&apos;  # Non-greedy match on filler
+    re4=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re5=&apos;.*?&apos;  # Non-greedy match on filler
+    re6=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re7=&apos;.*?&apos;  # Non-greedy match on filler
+    re8=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re9=&apos;.*?&apos;  # Non-greedy match on filler
+    re10=&apos;(&quot;.*?&quot;)&apos; # Double Quote String 1
+    rg = re.compile(re1+re2+re3+re4+re5+re6+re7+re8+re9+re10,re.IGNORECASE|re.DOTALL)
+    m = rg.search(txt)
+    if m:
+        string1=m.group(1)
+        print (&quot;(&quot;+string1+&quot;)&quot;+&quot;\n&quot;)
+        return (&quot;(&quot;+string1+&quot;)&quot;+&quot;\n&quot;)
+def searchurl(t2):
+    re1=&apos;.*?&apos;  # Non-greedy match on filler
+    re2=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re3=&apos;.*?&apos;  # Non-greedy match on filler
+    re4=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re5=&apos;.*?&apos;  # Non-greedy match on filler
+    re6=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re7=&apos;.*?&apos;  # Non-greedy match on filler
+    re8=&apos;&quot;.*?&quot;&apos;    # Uninteresting: string
+    re9=&apos;.*?&apos;  # Non-greedy match on filler
+    re10=&apos;&quot;.*?&quot;&apos;   # Uninteresting: string
+    re11=&apos;.*?&apos; # Non-greedy match on filler
+    re12=&apos;(&quot;.*?&quot;)&apos; # Double Quote String 1
+
+    rg = re.compile(re1+re2+re3+re4+re5+re6+re7+re8+re9+re10+re11+re12,re.IGNORECASE|re.DOTALL)
+    m = rg.search(t2)
+    if m:
+        string1=m.group(1)
+        print (&quot;(&quot;+string1+&quot;)&quot;+&quot;\n&quot;)
+        return  &quot;(&quot;+string1+&quot;)&quot;+&quot;\n&quot;
+def se(p):
+    s=requests.session()
+    q=str(p)
+    url=&quot;http://list.iqiyi.com/www/1/1-------------11-&quot;+q+&quot;-1-iqiyi--.html&quot;
+    wp=s.get(url)
+    cont=wp.content.decode(&quot;utf-8&quot;)
+    print(cont)
+    page=re.findall(&apos;&lt;img (.*?)&gt;&apos;, cont,re.S)
+    for ii in range(1,len(page)):
+        searchurl(page[ii])
+        searchtitle(page[ii])
+        es.index(index=&quot;film&quot;, doc_type=&quot;info&quot;, id=datetime.now(),body={&quot;title&quot;:searchtitle(page[ii]), &quot;timestamp&quot;: datetime.now(),&quot;url&quot;:searchurl(page[ii])})
+es=Elasticsearch()
+es.index(index=&quot;film&quot;,doc_type=&quot;info&quot;,body={})
+for i in range(1,30):
+    se(i)
+</code></pre><p>第三个爬虫是爱奇艺的<br>用了<a href="http://www.txt2re.com/来写正则表达式的筛选，非常方便，效率感天动地。" target="_blank" rel="external">http://www.txt2re.com/来写正则表达式的筛选，非常方便，效率感天动地。</a></p>
+<p>链接：<a href="https://github.com/qyc0129/byr-bbs-scrapy" target="_blank" rel="external">https://github.com/qyc0129/byr-bbs-scrapy</a></p>
+<p>下次可能会使用scrapy框架，虽然不太喜欢。。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为了elasticsearch的搜索数据写了几个爬虫，下面分析一下思路和写法  。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    import requests
+    import urllib3
+    import urllib.request
+    import sys, urllib
+    from lxml import html
+    from bs4 import BeautifulSoup
+    import re
+from datetime import datetime
+from elasticsearch import Elasticsearch
+import time
+from scrapy.spider import Spider
+import string
+data = {&amp;quot;id&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;passwd&amp;quot;:&amp;quot; &amp;quot;}
+s = requests.Session()
+result =s.post(&amp;quot;http://m.byr.cn/user/login&amp;quot;,data)
+print(result)
+def work(p):
+q=str(p)
+es = Elasticsearch()
+url = &amp;quot;http://m.byr.cn/board/Food/1?p=&amp;quot;+q #网页地址
+wp=s.get(url)
+cont=wp.content.decode(&amp;quot;utf-8&amp;quot;)
+   ## print(cont)
+soup=BeautifulSoup(cont,&amp;quot;lxml&amp;quot;)
+   ## print(&amp;apos;\n&amp;apos;)
+#print(soup.prettify())
+#print(&amp;apos;\n&amp;apos;)
+   # print(&amp;apos;\n&amp;apos;)
+url_list = soup.findAll(name=&amp;apos;a&amp;apos;,href=re.compile(&amp;apos;article&amp;apos;))
+url1=[]
+i=0
+list=[]
+for each_url in url_list:
+str_url = str(each_url).split(&amp;apos;&amp;quot;&amp;apos;)
+list.append(str_url[1])
+print(str_url[1])
+list.remove(list[0])
+print(list)
+st1=&amp;apos;&amp;apos;
+for link in soup.findAll(&amp;apos;a&amp;apos;):
+st2=str(link.string)
+st1=st1+st2
+st3=&amp;apos;●&amp;apos;
+st4=st1[st1.find(st3)+1:]
+st5=re.split(&amp;apos;●|Re|├&amp;apos;,st4)
+length=min(len(list),len(st5))
+print(st5)
+if length&amp;gt;0:
+for i in range(0,length):
+es.index(index=&amp;quot;byr&amp;quot;, doc_type=&amp;quot;info&amp;quot;, id=datetime.now(),body={&amp;quot;title&amp;quot;:st5[i], &amp;quot;timestamp&amp;quot;: datetime.now(),&amp;quot;url&amp;quot;:&amp;quot;http://m.byr.cn&amp;quot;+list[i]})
+for v in range(1,37):
+work(v)
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://yoursite.com/categories/coding/"/>
+    
+    
+      <category term="爬虫 byr bbs" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB-byr-bbs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Elasitcsearch融合json实现</title>
+    <link href="http://yoursite.com/2016/09/08/json%20elasticsearch/"/>
+    <id>http://yoursite.com/2016/09/08/json elasticsearch/</id>
+    <published>2016-09-08T09:20:45.000Z</published>
+    <updated>2016-10-16T03:16:02.671Z</updated>
+    
+    <content type="html"><![CDATA[<p>想实现一个web版的搜索功能，一开始准备用flask和html交互，研究了后干脆使用elasticsearch的js版控件，省了许多事。  </p>
+<hr>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/browser-builds.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/browser-builds.html</a></p>
+<blockquote>
+<pre><code>Browser Buildsedit  
+    We also provide builds of the elasticsearch.js &gt; client for use in the browser.  
+     These versions of the client are currently experimental. We test these builds  using saucelabs in Chrome, Firefox, and Internet Explorer 10, and 11.  
+    While there is a way to get it working in IE 9, the browser severely limits what you can do with cross-domain requests. Because of these limits, many of the API calls and other functionality do not work.
+</code></pre></blockquote>
+<p>直接下载v11.0.1的zip文件，选择其中的elasticsearch.js文件复制到main.js同目录下 </p>
+<a id="more"></a>
+<p>官方文档没有给出如何使用，参考各种文章后直接<br>// elasticsearch.js 将 elasticsearch 命名空间加入窗口<br>var client = elasticsearch.Client({ … });<br>根据官方文档进行测试<br>    Ping the clusteredit<br>    Send a HEAD request to “/?hello=elasticsearch” and allow up to 30 seconds for it to complete.<br>    client.ping({<br>      requestTimeout: 30000,</p>
+<pre><code>  // undocumented params are appended to the query string
+  hello: &quot;elasticsearch&quot;
+}, function (error) {
+  if (error) {
+    console.error(&apos;elasticsearch cluster is down!&apos;);
+  } else {
+    console.log(&apos;All is well&apos;);
+  }
+});
+</code></pre><p>Chrome下调出控制台，点击按钮看到ALL IS WELL<br>•    </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;想实现一个web版的搜索功能，一开始准备用flask和html交互，研究了后干脆使用elasticsearch的js版控件，省了许多事。  &lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/browser-builds.html&quot;&gt;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/browser-builds.html&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;Browser Buildsedit  
+    We also provide builds of the elasticsearch.js &amp;gt; client for use in the browser.  
+     These versions of the client are currently experimental. We test these builds  using saucelabs in Chrome, Firefox, and Internet Explorer 10, and 11.  
+    While there is a way to get it working in IE 9, the browser severely limits what you can do with cross-domain requests. Because of these limits, many of the API calls and other functionality do not work.
+&lt;/code&gt;&lt;/pre&gt;&lt;/blockquote&gt;
+&lt;p&gt;直接下载v11.0.1的zip文件，选择其中的elasticsearch.js文件复制到main.js同目录下 &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://yoursite.com/categories/coding/"/>
+    
+    
+      <category term="Elasticsearch json" scheme="http://yoursite.com/tags/Elasticsearch-json/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Arduino节奏大师</title>
+    <link href="http://yoursite.com/2016/06/07/arduino/"/>
+    <id>http://yoursite.com/2016/06/07/arduino/</id>
+    <published>2016-06-07T09:20:45.000Z</published>
+    <updated>2016-10-16T03:11:25.376Z</updated>
+    
+    <content type="html"><![CDATA[<p>。。。这篇数据丢失了。。</p>
+<p>主要是当时做arduino的一些代码</p>
+<p>是利用LCD屏和喇叭模仿节奏类音乐游戏的程序</p>
+<p>丢一个开源链接吧：<a href="https://github.com/qyc0129/arduino" target="_blank" rel="external">https://github.com/qyc0129/arduino</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;。。。这篇数据丢失了。。&lt;/p&gt;
+&lt;p&gt;主要是当时做arduino的一些代码&lt;/p&gt;
+&lt;p&gt;是利用LCD屏和喇叭模仿节奏类音乐游戏的程序&lt;/p&gt;
+&lt;p&gt;丢一个开源链接吧：&lt;a href=&quot;https://github.com/qyc0129/arduino&quot; target=
+    
+    </summary>
+    
+      <category term="coding" scheme="http://yoursite.com/categories/coding/"/>
+    
+    
+      <category term="Arduino" scheme="http://yoursite.com/tags/Arduino/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VMware?VirtualBOX?Docker?No KLEE!</title>
+    <link href="http://yoursite.com/2016/05/18/VMware%20VirtualBOX%20Docker%20No%20KLEE/"/>
+    <id>http://yoursite.com/2016/05/18/VMware VirtualBOX Docker No KLEE/</id>
+    <published>2016-05-18T02:46:45.000Z</published>
+    <updated>2016-10-16T03:08:49.089Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>- 引言：</strong></p>
+<p>四月份折腾了有段时间的KLEE因为各种原因终于宣告流产了，也算是放下了些东西。过程还是很有趣的，学习了有趣的基于VirtualBOX的Docker虚拟机，也稍微和大牛交流请教了些，下面随便说点有关虚拟机的东西。</p>
+<p><strong>- PartI</strong></p>
+<p>在虚拟机的使用手感上，感觉VMware还是更胜一筹，毕竟有强大的VMwareTools,有优秀的主从机文件拖拽功能和分辨率调整功能，尽管有时候不是那么好用，会出现无法自动安装的情况，还要加载镜像自己安装。期间出现过诸多问题，VMwareTools对Ubuntu14的支持不是很好，各种折腾也没有完美安装，最终换用了Ubuntu12。</p>
+<a id="more"></a>
+<p>VirtualBOX则胜在较为轻巧，体积仅为VMware的十分之一，内存占用也不像VMware那样大，但用惯了VMware还是挺不习惯的。过程中遇到了无法创建&amp;打开虚拟机的问题，错误编号1790，问题在于可能系统的windows主题的3个文件themeservice.dll,themeui.dll,uxtheme.dll被破解，导致无法虚拟机加载（你真的是Linux虚拟机吗？？），只要下载原版文件到system32下覆盖回来就行了 。</p>
+<p>Docker是一个使用VirtualBOX,基于Linux 64bit 的开源应用容器引擎。在接触Docker时让人眼前一亮的事情是他打包了整个系统（依赖），省去了大量安装依赖更新版本的过程，让所有使用Docker的程序员可以统一便捷地调用依赖。在创建KLEE的时候，简单的一个指令就创建出了新的KLEE虚拟机，运行虚拟机时负载极小，让人惊叹如此的快捷与轻量化。Docker中似乎很提倡快速建立&amp;销毁，在-rm参数下创建的虚拟机在关闭后就会自动销毁，进一步减少了资源的占用。</p>
+<p>**</p>
+<ul>
+<li>PartII**</li>
+</ul>
+<p>对于KLEE这个东西，本来是要去做个简单的展示的，然而因为某些原因错过了。在符号执行中KLEE还是挺有趣的，不过不想说什么了。。有兴趣的看看PPT吧。<br><a href="http://www.slowshiki.me/klee&amp;uc-klee.pptx" target="_blank" rel="external">http://www.slowshiki.me/klee&amp;uc-klee.pptx</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;- 引言：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;四月份折腾了有段时间的KLEE因为各种原因终于宣告流产了，也算是放下了些东西。过程还是很有趣的，学习了有趣的基于VirtualBOX的Docker虚拟机，也稍微和大牛交流请教了些，下面随便说点有关虚拟机的东西。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;- PartI&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在虚拟机的使用手感上，感觉VMware还是更胜一筹，毕竟有强大的VMwareTools,有优秀的主从机文件拖拽功能和分辨率调整功能，尽管有时候不是那么好用，会出现无法自动安装的情况，还要加载镜像自己安装。期间出现过诸多问题，VMwareTools对Ubuntu14的支持不是很好，各种折腾也没有完美安装，最终换用了Ubuntu12。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://yoursite.com/categories/coding/"/>
+    
+    
+      <category term="KLEE VM" scheme="http://yoursite.com/tags/KLEE-VM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>追忆-易语言与那些过往</title>
+    <link href="http://yoursite.com/2016/04/12/%E8%BF%BD%E5%BF%86-%E6%98%93%E8%AF%AD%E8%A8%80%E4%B8%8E%E9%82%A3%E4%BA%9B%E8%BF%87%E5%BE%80/"/>
+    <id>http://yoursite.com/2016/04/12/追忆-易语言与那些过往/</id>
+    <published>2016-04-12T09:50:45.000Z</published>
+    <updated>2016-10-16T03:05:33.537Z</updated>
+    
+    <content type="html"><![CDATA[<p>   今天会想起来说说和易语言有关的事情，也是因为有个朋友托我实现个图片抽奖的小功能，不想写GUI就准备重新用易语言写这么个东西。然而写着写着连循环都想不起怎么用易语言写了，思考了半天想到了</p>
+<pre><code>时钟1.时钟频率=300 or时钟1.时钟频率=0
+</code></pre><p>的写法。</p>
+<ul>
+<li><strong>In The Past</strong></li>
+</ul>
+<p>  最早接触到易语言应该是07、08年吧，第一次接触到就觉得这个语言好亲切，图形界面很方便，比VB舒服，渐渐地也接触到了super-ec模块这种红极一时的东西，期间也爆出了模块可以被轻松反编译破解的大BUG。初次接触E并没有过于深入，半捡半丢地过了几年之后，大概在10年重捡起了它，然后也算是和朋友在bnb圈子里搞出了些名堂。</p>
+<a id="more"></a>
+<p>当时利用暂停进程可以在bnb里实现很多功能，于是从最初的进程暂停到后来的线程挂起，年轻的我也对进程有了一些认识。然后盛大购买了新版的 HackShield,圈子中的人们开始对抗HS，大家也是八仙过海，蠢办法和高科技层出不穷，充分展现了人民战争的智慧力量（笑。其中最为广泛流传，也是我发布的方法就是在HS启动之前不断地对它的驱动文件夹里写入和驱动同名的文件夹/文件，使其无法加载驱动，这种方法持续了大概有一年之久。<br>也就是在这个开发的过程中我学习到了黑月/斩月的脱库技术，当时真的让我十分惊叹。因为易语言的运行是要有支持库的，而且是一个十分笨重的支持库，加上编译出的程序本体也很大，十分不便，也不美观。黑月/斩月可以进行脱库把一个几M程序简化成大概几十kb的程序，不过要求很苛刻，不能带有GUI。现在想想，那我为什么不用C++呢？hhhh.</p>
+<p>今天在知乎上查了查，看起来人们都不是很待见易语言，觉得吴涛是个招摇撞骗之流。吴涛个人不做评价，易语言确实给了初学者们一个平台，让他们能较为直观地用自己的第一语言去理解去认识这一行一行的代码，他们在以后的道路上回首望去，或许会有更为深刻的认识。<br>(附一个知乎链接  感觉靠后面的几个答案很中肯)</p>
+<p>Q易语言那么不入流吗？： </p>
+<p><a href="http://www.zhihu.com/question/19770358" target="_blank" rel="external">http://www.zhihu.com/question/19770358</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;   今天会想起来说说和易语言有关的事情，也是因为有个朋友托我实现个图片抽奖的小功能，不想写GUI就准备重新用易语言写这么个东西。然而写着写着连循环都想不起怎么用易语言写了，思考了半天想到了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;时钟1.时钟频率=300 or时钟1.时钟频率=0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;的写法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;In The Past&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;  最早接触到易语言应该是07、08年吧，第一次接触到就觉得这个语言好亲切，图形界面很方便，比VB舒服，渐渐地也接触到了super-ec模块这种红极一时的东西，期间也爆出了模块可以被轻松反编译破解的大BUG。初次接触E并没有过于深入，半捡半丢地过了几年之后，大概在10年重捡起了它，然后也算是和朋友在bnb圈子里搞出了些名堂。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://yoursite.com/categories/coding/"/>
+    
+    
+      <category term="E语言 易语言" scheme="http://yoursite.com/tags/E%E8%AF%AD%E8%A8%80-%E6%98%93%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu 下Scrapy环境搭建</title>
+    <link href="http://yoursite.com/2016/04/05/ubuntu%20scrapy%20environment/"/>
+    <id>http://yoursite.com/2016/04/05/ubuntu scrapy environment/</id>
+    <published>2016-04-05T13:50:45.000Z</published>
+    <updated>2016-10-16T03:06:21.674Z</updated>
+    
+    <content type="html"><![CDATA[<p>Ubuntu下搭建Scrapy环境遇到的问题&amp;解决<br> QA<br>Q1.为什么选择Ubuntu环境<br>A:windows下的Scrapy实在是太难搭啦，转投Linux。<br>选择了Ubuntu12是因为Ubuntu14不是很兼容VMwareTools 为了图省事我直接用了12，另外发现shadowsocks勾选局域网链接后可以在Ubuntu虚拟机中设置代理直接穿透出来。<br>下面开始搭建环境<br>Ubuntu自带Python<br>$python</p>
+<blockquote>
+<blockquote>
+<p>import xml<br>import OpenSSL<br>发现已经自带两个依赖</p>
+</blockquote>
+</blockquote>
+<a id="more"></a>
+<p>$sudo apt-get install python-dev</p>
+<p>$sudo apt-get install libevent-dev</p>
+<p>之后安装pip</p>
+<p>$ sudo apt-get install python-pip</p>
+<p>安装Scrapy</p>
+<p>$ sudo pip install scrapy</p>
+<p>发现报错</p>
+<p>Could not find function xmlCheckVersion in library libxml2.</p>
+<p>补装xml依赖 </p>
+<p>$sudo apt-get install libxml2-dev</p>
+<p>$sudo apt-get install libxslt1-dev</p>
+<p>再次sudo pip install scrapy</p>
+<p>Error: command ‘gcc’ failed with exit status 1</p>
+<p>对着报错思考了很久发现import xml ！=import lxml</p>
+<p>$sudo apt-get install python-lxml</p>
+<p>再次sudo pip install scrapy 成功</p>
+<p>$scrapy version 显示版本</p>
+<p>附上一个简单的python程序登录byr(scrapy无关)</p>
+<pre><code>import requests
+
+url=&apos;http://bbs.byr.cn/user/ajax_login.json&apos;
+
+header={
+       &apos;User-Agent&apos;: &apos;Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)&apos;,
+        &apos;Host&apos;: &apos;bbs.byr.cn&apos;,
+      &apos; X-Requested-With&apos;: &apos;XMLHttpRequest&apos;,
+       }
+form_data={
+   &apos;id&apos;:&apos;your id&apos;,
+    &apos;passwd&apos;:&apos;your pswd&apos;,
+   &apos;mode&apos;:&apos;0&apos;,
+   &apos;CookieDate&apos;:&apos;0&apos;,
+}
+s=requests.session()
+response=s.post(url,data=form_data,headers=header)
+print(response.text)
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Ubuntu下搭建Scrapy环境遇到的问题&amp;amp;解决&lt;br&gt; QA&lt;br&gt;Q1.为什么选择Ubuntu环境&lt;br&gt;A:windows下的Scrapy实在是太难搭啦，转投Linux。&lt;br&gt;选择了Ubuntu12是因为Ubuntu14不是很兼容VMwareTools 为了图省事我直接用了12，另外发现shadowsocks勾选局域网链接后可以在Ubuntu虚拟机中设置代理直接穿透出来。&lt;br&gt;下面开始搭建环境&lt;br&gt;Ubuntu自带Python&lt;br&gt;$python&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;import xml&lt;br&gt;import OpenSSL&lt;br&gt;发现已经自带两个依赖&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://yoursite.com/categories/coding/"/>
+    
+    
+      <category term="Linux Scrapy" scheme="http://yoursite.com/tags/Linux-Scrapy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>svd&amp;machine learning</title>
+    <link href="http://yoursite.com/2016/03/28/svd&amp;machine%20learning/"/>
+    <id>http://yoursite.com/2016/03/28/svd&amp;machine learning/</id>
+    <published>2016-03-28T15:13:45.000Z</published>
+    <updated>2016-10-16T03:02:30.919Z</updated>
     
     <content type="html"><![CDATA[<p><strong>svd&amp;machine learning</strong><br>-</p>
 <ul>
@@ -30,6 +564,7 @@
 <p>假设该矩阵表示6名观众对4部电影《肖申克的救赎》、《非常嫌疑犯》、《教父》以及《谋杀绿脚趾》的评分。<br>《教父》看起来获得了最高的平均分1.5分，而《肖申克的救赎》得分较低有0.5分的平均得分。<br>我们进一步将矩阵分解</p>
 <p><img src="http://slowshiki.cn/pagepic/1/2.jpg" alt=""></p>
 <p>分别对分解出的三个矩阵命名为A/B/C矩阵。不难看出A矩阵和C矩阵都是由0和1组成的布尔矩阵，B矩阵则是对角矩阵。</p>
+<a id="more"></a>
 <p>C矩阵体现了影片（列）与类型（行）的关系：《肖申克的救赎》与《非常嫌疑犯》分别属于不同题材的电影，即戏剧题材和犯罪题材【ps:个人认为《肖申克的救赎》应该也与《非常嫌疑犯》一样属于犯罪题材，作者举例可能有些不当】，《教父》同时属于两种题材，《谋杀绿脚趾》在属于犯罪题材的同时又引入了新的喜剧题材。</p>
 <p>A矩阵表达了这6名观众对电影题材的偏好，观众A/D/E喜爱喜剧题材，观众B/D/E喜爱犯罪题材，观众C/E/F热衷于喜剧。</p>
 <p>B矩阵表达了在决定观众对影片的喜好时，犯罪题材所起的作用是其他两种题材的两倍。</p>
@@ -72,29 +607,17 @@
 &lt;ul&gt;
 &lt;li&gt;引言&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;先来看一个例子&lt;br&gt;&lt;img src=&quot;http://slowshiki.cn/pagepic/1/1.jpg&quot; al
+&lt;p&gt;先来看一个例子&lt;br&gt;&lt;img src=&quot;http://slowshiki.cn/pagepic/1/1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;假设该矩阵表示6名观众对4部电影《肖申克的救赎》、《非常嫌疑犯》、《教父》以及《谋杀绿脚趾》的评分。&lt;br&gt;《教父》看起来获得了最高的平均分1.5分，而《肖申克的救赎》得分较低有0.5分的平均得分。&lt;br&gt;我们进一步将矩阵分解&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://slowshiki.cn/pagepic/1/2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;分别对分解出的三个矩阵命名为A/B/C矩阵。不难看出A矩阵和C矩阵都是由0和1组成的布尔矩阵，B矩阵则是对角矩阵。&lt;/p&gt;
     
     </summary>
     
+      <category term="coding" scheme="http://yoursite.com/categories/coding/"/>
     
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2016/10/14/restart-20161014/"/>
-    <id>http://yoursite.com/2016/10/14/restart-20161014/</id>
-    <published>2016-10-14T15:46:11.740Z</published>
-    <updated>2016-10-14T15:41:49.648Z</updated>
     
-    <content type="html"><![CDATA[<p>#Blog Restart<br>在DigitalOcean越来越慢的情况下，今天中午给Centos更换内核后出现了错误，疑似网卡在更换kernel后无法使用，一番折腾后还是各种Module错误，加上DO之前的100刀优惠已经过了一年失效，决定放弃DO的VPS。<br>一番折腾之后换到了Github上挂着博客，全免费还是非常良心的。准备先恢复下之前的文章吧。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#Blog Restart&lt;br&gt;在DigitalOcean越来越慢的情况下，今天中午给Centos更换内核后出现了错误，疑似网卡在更换kernel后无法使用，一番折腾后还是各种Module错误，加上DO之前的100刀优惠已经过了一年失效，决定放弃DO的VPS。&lt;br&gt;一番
-    
-    </summary>
-    
+      <category term="machine learning" scheme="http://yoursite.com/tags/machine-learning/"/>
     
   </entry>
   

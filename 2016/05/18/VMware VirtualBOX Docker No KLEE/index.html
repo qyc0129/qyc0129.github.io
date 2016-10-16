@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Blog Restart"/>
+  <meta property="og:title" content="VMware?VirtualBOX?Docker?No KLEE!"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="Slow&#39;s River"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Blog Restart</p>
+          <p class="title">VMware?VirtualBOX?Docker?No KLEE!</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -100,14 +100,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2016-10-14</span>
+            <span class="date">2016-05-18</span>
             <span class="time">11:23:13</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/Blog/">Blog</a>
+<a href="/categories/coding/">coding</a>
 </span>
           
         </div>
@@ -116,14 +116,25 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/Blog/">#Blog</a>
+<a class="tag" href="/tags/KLEE-VM/">#KLEE VM</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>#Blog Restart<br>在DigitalOcean越来越慢的情况下，今天中午给Centos更换内核后出现了错误，疑似网卡在更换kernel后无法使用，一番折腾后还是各种Module错误，加上DO之前的100刀优惠已经过了一年失效，决定放弃DO的VPS。<br><a id="more"></a><br>一番折腾之后换到了Github上挂着博客，全免费还是非常良心的。准备先恢复下之前的文章吧。</p>
+          <p><strong>- 引言：</strong></p>
+<p>四月份折腾了有段时间的KLEE因为各种原因终于宣告流产了，也算是放下了些东西。过程还是很有趣的，学习了有趣的基于VirtualBOX的Docker虚拟机，也稍微和大牛交流请教了些，下面随便说点有关虚拟机的东西。</p>
+<p><strong>- PartI</strong></p>
+<p>在虚拟机的使用手感上，感觉VMware还是更胜一筹，毕竟有强大的VMwareTools,有优秀的主从机文件拖拽功能和分辨率调整功能，尽管有时候不是那么好用，会出现无法自动安装的情况，还要加载镜像自己安装。期间出现过诸多问题，VMwareTools对Ubuntu14的支持不是很好，各种折腾也没有完美安装，最终换用了Ubuntu12。</p>
+<a id="more"></a>
+<p>VirtualBOX则胜在较为轻巧，体积仅为VMware的十分之一，内存占用也不像VMware那样大，但用惯了VMware还是挺不习惯的。过程中遇到了无法创建&amp;打开虚拟机的问题，错误编号1790，问题在于可能系统的windows主题的3个文件themeservice.dll,themeui.dll,uxtheme.dll被破解，导致无法虚拟机加载（你真的是Linux虚拟机吗？？），只要下载原版文件到system32下覆盖回来就行了 。</p>
+<p>Docker是一个使用VirtualBOX,基于Linux 64bit 的开源应用容器引擎。在接触Docker时让人眼前一亮的事情是他打包了整个系统（依赖），省去了大量安装依赖更新版本的过程，让所有使用Docker的程序员可以统一便捷地调用依赖。在创建KLEE的时候，简单的一个指令就创建出了新的KLEE虚拟机，运行虚拟机时负载极小，让人惊叹如此的快捷与轻量化。Docker中似乎很提倡快速建立&amp;销毁，在-rm参数下创建的虚拟机在关闭后就会自动销毁，进一步减少了资源的占用。</p>
+<p>**</p>
+<ul>
+<li>PartII**</li>
+</ul>
+<p>对于KLEE这个东西，本来是要去做个简单的展示的，然而因为某些原因错过了。在符号执行中KLEE还是挺有趣的，不过不想说什么了。。有兴趣的看看PPT吧。<br><a href="http://www.slowshiki.me/klee&amp;uc-klee.pptx" target="_blank" rel="external">http://www.slowshiki.me/klee&amp;uc-klee.pptx</a></p>
 
         </div>
       </div>
