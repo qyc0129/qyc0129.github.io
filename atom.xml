@@ -99,11 +99,11 @@
   </entry>
   
   <entry>
-    <title>几个byrbbs&amp;others爬虫思路</title>
+    <title>几个byrbbs others爬虫思路</title>
     <link href="http://www.slowshiki.cn/2016/09/15/scrapyN/"/>
     <id>http://www.slowshiki.cn/2016/09/15/scrapyN/</id>
     <published>2016-09-15T12:20:45.000Z</published>
-    <updated>2016-10-16T03:20:35.009Z</updated>
+    <updated>2016-10-16T13:24:13.916Z</updated>
     
     <content type="html"><![CDATA[<p>为了elasticsearch的搜索数据写了几个爬虫，下面分析一下思路和写法  。</p>
 <pre><code>    import requests
@@ -552,11 +552,11 @@ print(response.text)
   </entry>
   
   <entry>
-    <title>svd&amp;machine learning</title>
-    <link href="http://www.slowshiki.cn/2016/03/28/svd&amp;machine%20learning/"/>
-    <id>http://www.slowshiki.cn/2016/03/28/svd&amp;machine learning/</id>
+    <title>svd machine learning</title>
+    <link href="http://www.slowshiki.cn/2016/03/28/svd%20machine%20learning/"/>
+    <id>http://www.slowshiki.cn/2016/03/28/svd machine learning/</id>
     <published>2016-03-28T15:13:45.000Z</published>
-    <updated>2016-10-16T03:02:30.919Z</updated>
+    <updated>2016-10-16T13:26:49.856Z</updated>
     
     <content type="html"><![CDATA[<p><strong>svd&amp;machine learning</strong><br>-</p>
 <ul>
