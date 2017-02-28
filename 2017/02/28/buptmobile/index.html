@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Slow">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="sklearn-install"/>
+  <meta property="og:title" content="Macbook连接不上bupt-mobile的解决办法"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="Slow&#39;s River"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">sklearn-install</p>
+          <p class="title">Macbook连接不上bupt-mobile的解决办法</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -108,7 +108,7 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2016-10-13</span>
+            <span class="date">2017-02-28</span>
             <span class="time">22:47:34</span>
           </span>
           
@@ -124,50 +124,31 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/machine-learning/">#machine learning</a>
+<a class="tag" href="/tags/bupt-mobile-wifi-solution/">#bupt-mobile wifi solution</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>官方文档：<a href="http://scikit-learn.org/stable/install.html" target="_blank" rel="external">http://scikit-learn.org/stable/install.html</a><br>Scikit-learn requires:<br>•    Python (&gt;= 2.6 or &gt;= 3.3),<br>•    NumPy (&gt;= 1.6.1),<br>•    SciPy (&gt;= 0.9).<br>使用的环境是python3.4<br>安装Scipy时报错 出现NOT AVAILABLE错误  查看错误代码后发现应该先安装Numpy<br>安装Numpy时较为顺利，直接pip install numpy 等待安装完成<br>接着重新安装Scipy，pip install scipy 安装成功<br><a id="more"></a><br>环境准备就绪 安装scikit-learn<br>直接pip install scikit-learn 出现unable to find   vcvarsall.bat<br>看来又是vc编译的问题….（SET VS90COMNTOOLS=%VS120COMNTOOLS%）<br>查阅后发现方法一：安装MinGW  </p>
-<ol>
-<li>首先安装MinGW，在MinGW的安装目录下找到bin的文件夹，找到  mingw32-make.exe，复制一份更名为make.exe；  </li>
-<li>把MinGW的路径添加到环境变量path中，比如我把MinGW安装到D:  \MinGW\中，就把D:\MinGW\bin添加到path中；  </li>
-<li>打开命令行窗口，在命令行窗口中进入到要安装代码的目录下；  </li>
-<li>输入如下命令就可以安装了。  </li>
-<li>setup.py install build –compiler=mingw32  </li>
-</ol>
-<p>然而尝试后以失败告终。。  </p>
-<p>接着搜索在知乎上看到了pip install lxml失败报同样错误的问题<br>（<a href="http://www.zhihu.com/question/26857761）" target="_blank" rel="external">http://www.zhihu.com/question/26857761）</a><br>发现方法二：<br>将Python34/Lib/distutils/msvc9compiler.py文件中的<br>vc_env = query_vcvarsall(VERSION, plat_spec)<br>为：<br>如果安装的是VS2014，则VERSION为13.0；<br>如果安装的是VS2013，则VERSION为12.0；<br>如果安装的是VS2012，则VERSION为11.0；<br>如果安装的是VS2010，则VERSION为10.0；<br>如果安装的是VS2008，则VERSION为9.0。<br>像我的安装的是VS2013，则<br>vc_env = query_vcvarsall(12.0, plat_spec)  </p>
-<p>接着重新pip安装 成功  </p>
-<p>在python中import sklearn发现报错！  </p>
-<pre><code>1.    &gt;&gt;&gt; import sklearn  
-2.    Traceback (most recent call last):  
-3.      File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;  
-4.      File &quot;sklearn/__init__.py&quot;, line 37, in &lt;module&gt;  
-5.    from . import __check_build  
-6.      File &quot;sklearn/__check_build/__init__.py&quot;, line 46, in &lt;module&gt;  
-7.    raise_build_error(e)  
-8.      File &quot;sklearn/__check_build/__init__.py&quot;, line 41, in raise_build_error  
-9.    %s&quot;&quot;&quot; % (e, local_dir, &apos;&apos;.join(dir_content).strip(), msg))  
-10.    ImportError: No module named _check_build  
-11.    ___________________________________________________________________________  
-12.    Contents of sklearn/__check_build:  
-13.    __init__.py   __init__.pyc  _check_build.c  
-14.    _check_build.pyx  setup.py  setup.pyc  
-15.    ___________________________________________________________________________  
-16.    It seems that scikit-learn has not been built correctly.  
-17.      
-18.    If you have installed scikit-learn from source, please do not forget  
-19.    to build the package before using it: run `python setup.py install` or  
-20.    `make` in the source directory.  
-21.      
-22.    If you have used an installer, please check that it is suited for your  
-23.    Python version, your operating system and your platform.  
-</code></pre><p>后来发现可能是编译器没有重启 把命令提示行全关闭后重新import sklearn 成功</p>
-
+          <p>校园网升级后学校的bupt-mobile无法使用电脑链接（有时无法链接，有的人可以），前身dot1x好像是由于协议原因电脑无法连接，原解决办法疑似失效（待考证）。<br><br>猜测目前是根据请求的mac地址进行了拒绝。<br><br>mac地址无法直接判断出设备类型，但是可以通过其特征码（即MAC地址的前六位）判断出网卡的类型，从而判断出设备类型。<br><br>Example:<br><a href="http://aruljohn.com/mac.pl" target="_blank" rel="external">http://aruljohn.com/mac.pl</a><br><br>(需翻墙)</p>
+<p>例如macbook的网卡物理地址可以查出是tplink产的 <br><br>由于该类型的没有移动端网卡 自然可以把tplink类的归位pc不予链接wifi</p>
+<p>MAC Address/OUI     Vendor {Company}</p>
+<p>00:1D:0F        TP-LINK TECHNOLOGIES CO.,LTD.</p>
+<p>那么我们通过修改网卡的mac地址是否可以连接上网络呢？<br><br>我们获得了一个小米系列的网卡mac特征</p>
+<p>MAC Address/OUI    Vendor {Company}</p>
+<p>9C:99:A0        Xiaomi Communications Co Ltd<br><a id="more"></a><br>为了防止出现mac地址重复产生arp攻击，我们多采集几个特征并后六位进行随机生成（仍然有和他人撞车的可能）。<br><br>调用终端控制台命令<br><br><code>sudo ifconfig en0 ether</code> <br><br>更改第一网卡的mac地址<br><br>再连接bupt-mobile 输入学号密码 成功<br><br>osX上的Python实现如下，windows系统类似</p>
+<pre><code>import random
+import os
+macaddress_prefix = [&apos;9C99A0&apos;, &apos;E8BBA8&apos;, &apos;E44790&apos;, &apos;DC6DCD&apos;, &apos;CC2D83&apos;, &apos;C8F230&apos;, &apos;C09F05&apos;, &apos;BC3AEA&apos;, &apos;B0AA36&apos;, &apos;A81B5A&apos;, &apos;A43D78&apos;, &apos;A09347&apos;]
+used_characters = [&apos;0&apos;,&apos;1&apos;,&apos;2&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;,&apos;6&apos;,&apos;7&apos;,&apos;8&apos;,&apos;9&apos;,&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;D&apos;,&apos;E&apos;,&apos;F&apos;]
+macaddress_string = random.choice(macaddress_prefix)
+for i in range(6):
+macaddress_string += random.choice(used_characters)
+shell_command = &quot;sudo ifconfig en0 ether {0}&quot;.format(macaddress_string)
+command = &quot;osascript -e  &apos;do shell script \&quot;{0}\&quot; with administrator privileges&apos;&quot;.format(shell_command)
+os.popen(command)
+</code></pre>
         </div>
       </div>
     </div>

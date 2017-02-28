@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.slowshiki.cn/"/>
-  <updated>2016-10-16T03:24:53.486Z</updated>
+  <updated>2017-02-28T14:47:24.397Z</updated>
   <id>http://www.slowshiki.cn/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Macbook连接不上bupt-mobile的解决办法</title>
+    <link href="http://www.slowshiki.cn/2017/02/28/buptmobile/"/>
+    <id>http://www.slowshiki.cn/2017/02/28/buptmobile/</id>
+    <published>2017-02-28T15:23:23.000Z</published>
+    <updated>2017-02-28T14:47:24.397Z</updated>
+    
+    <content type="html"><![CDATA[<p>校园网升级后学校的bupt-mobile无法使用电脑链接（有时无法链接，有的人可以），前身dot1x好像是由于协议原因电脑无法连接，原解决办法疑似失效（待考证）。<br><br>猜测目前是根据请求的mac地址进行了拒绝。<br><br>mac地址无法直接判断出设备类型，但是可以通过其特征码（即MAC地址的前六位）判断出网卡的类型，从而判断出设备类型。<br><br>Example:<br><a href="http://aruljohn.com/mac.pl" target="_blank" rel="external">http://aruljohn.com/mac.pl</a><br><br>(需翻墙)</p>
+<p>例如macbook的网卡物理地址可以查出是tplink产的 <br><br>由于该类型的没有移动端网卡 自然可以把tplink类的归位pc不予链接wifi</p>
+<p>MAC Address/OUI     Vendor {Company}</p>
+<p>00:1D:0F        TP-LINK TECHNOLOGIES CO.,LTD.</p>
+<p>那么我们通过修改网卡的mac地址是否可以连接上网络呢？<br><br>我们获得了一个小米系列的网卡mac特征</p>
+<p>MAC Address/OUI    Vendor {Company}</p>
+<p>9C:99:A0        Xiaomi Communications Co Ltd<br><a id="more"></a><br>为了防止出现mac地址重复产生arp攻击，我们多采集几个特征并后六位进行随机生成（仍然有和他人撞车的可能）。<br><br>调用终端控制台命令<br><br><code>sudo ifconfig en0 ether</code> <br><br>更改第一网卡的mac地址<br><br>再连接bupt-mobile 输入学号密码 成功<br><br>osX上的Python实现如下，windows系统类似</p>
+<pre><code>import random
+import os
+macaddress_prefix = [&apos;9C99A0&apos;, &apos;E8BBA8&apos;, &apos;E44790&apos;, &apos;DC6DCD&apos;, &apos;CC2D83&apos;, &apos;C8F230&apos;, &apos;C09F05&apos;, &apos;BC3AEA&apos;, &apos;B0AA36&apos;, &apos;A81B5A&apos;, &apos;A43D78&apos;, &apos;A09347&apos;]
+used_characters = [&apos;0&apos;,&apos;1&apos;,&apos;2&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;,&apos;6&apos;,&apos;7&apos;,&apos;8&apos;,&apos;9&apos;,&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;D&apos;,&apos;E&apos;,&apos;F&apos;]
+macaddress_string = random.choice(macaddress_prefix)
+for i in range(6):
+macaddress_string += random.choice(used_characters)
+shell_command = &quot;sudo ifconfig en0 ether {0}&quot;.format(macaddress_string)
+command = &quot;osascript -e  &apos;do shell script \&quot;{0}\&quot; with administrator privileges&apos;&quot;.format(shell_command)
+os.popen(command)
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;校园网升级后学校的bupt-mobile无法使用电脑链接（有时无法链接，有的人可以），前身dot1x好像是由于协议原因电脑无法连接，原解决办法疑似失效（待考证）。&lt;/br&gt;&lt;br&gt;猜测目前是根据请求的mac地址进行了拒绝。&lt;/br&gt;&lt;br&gt;mac地址无法直接判断出设备类型，但是可以通过其特征码（即MAC地址的前六位）判断出网卡的类型，从而判断出设备类型。&lt;/br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;a href=&quot;http://aruljohn.com/mac.pl&quot;&gt;http://aruljohn.com/mac.pl&lt;/a&gt;&lt;/br&gt;&lt;br&gt;(需翻墙)&lt;/p&gt;
+&lt;p&gt;例如macbook的网卡物理地址可以查出是tplink产的 &lt;/br&gt;&lt;br&gt;由于该类型的没有移动端网卡 自然可以把tplink类的归位pc不予链接wifi&lt;/p&gt;
+&lt;p&gt;MAC Address/OUI     Vendor {Company}&lt;/p&gt;
+&lt;p&gt;00:1D:0F        TP-LINK TECHNOLOGIES CO.,LTD.&lt;/p&gt;
+&lt;p&gt;那么我们通过修改网卡的mac地址是否可以连接上网络呢？&lt;/br&gt;&lt;br&gt;我们获得了一个小米系列的网卡mac特征&lt;/p&gt;
+&lt;p&gt;MAC Address/OUI    Vendor {Company}&lt;/p&gt;
+&lt;p&gt;9C:99:A0        Xiaomi Communications Co Ltd&lt;br&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://www.slowshiki.cn/categories/coding/"/>
+    
+    
+      <category term="bupt-mobile wifi solution" scheme="http://www.slowshiki.cn/tags/bupt-mobile-wifi-solution/"/>
+    
+  </entry>
   
   <entry>
     <title>Blog Restart</title>
