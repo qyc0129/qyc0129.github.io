@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Slow">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Arduino节奏大师"/>
+  <meta property="og:title" content="简单的网页版网络直播实现"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="Slow&#39;s River"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Arduino节奏大师</p>
+          <p class="title">简单的网页版网络直播实现</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -108,8 +108,8 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2016-06-07</span>
-            <span class="time">22:24:53</span>
+            <span class="date">2017-03-16</span>
+            <span class="time">22:24:52</span>
           </span>
           
           <!--  Categories  -->
@@ -124,17 +124,22 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/Arduino/">#Arduino</a>
+<a class="tag" href="/tags/live/">#live</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>。。。这篇数据丢失了。。</p>
-<p>主要是当时做arduino的一些代码</p>
-<p>是利用LCD屏和喇叭模仿节奏类音乐游戏的程序</p>
-<p>丢一个开源链接吧：<a href="https://github.com/qyc0129/arduino" target="_blank" rel="external">https://github.com/qyc0129/arduino</a><br><a id="more"></a></p>
+          <p><strong>简单的网页版网络直播实现</strong><br>突发奇想想做外网到内网的网络直播免流量转播，找了下现有的简单模块搭建了一个简陋的网页直播平台。<br></p>
+<p>服务端直接采用windows端的Nginx做服务器，配合Nginx-RTMP模块（RTMP是Adobe Systems公司为Flash播放器和服务器之间音频、视频和数据传输开发的私有协议）,开一个端口实现对视频推流的接收。<br></p>
+<p>网页端使用Nginx的另一个端口，html+js模块直接播放RTMP流。</p>
+<p><img src="http://slowshiki.cn/pagepic/2/2.jpg" alt=""><br><a id="more"></a><br>直播流采用常用的OBS.<br></p>
+<p><img src="http://slowshiki.cn/pagepic/2/3.jpg" alt=""></p>
+<p>Nginx跑起来之后OBS就可以推流了，在网页端就可以看到直播效果了，可能是模块本身设计or机器配置的问题，本机观看效果尚可，网间测试不太流畅。<br></p>
+<p><img src="http://slowshiki.cn/pagepic/2/1.jpg" alt=""><br>看来如果想做一个位于校园网or IPV6协议网络直（盗）播平台也不是很容易，还是需要庞大的硬件资源支撑&amp;盗播可能会被请喝茶吧。<br></p>
+<p>github:<a href="https://github.com/qyc0129/SimpleNetLive" title="https://github.com/qyc0129/SimpleNetLive" target="_blank" rel="external">https://github.com/qyc0129/SimpleNetLive
+</a></p>
 
         </div>
       </div>

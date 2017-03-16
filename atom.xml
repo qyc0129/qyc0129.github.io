@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.slowshiki.cn/"/>
-  <updated>2017-02-28T14:47:24.397Z</updated>
+  <updated>2017-03-16T14:24:40.241Z</updated>
   <id>http://www.slowshiki.cn/</id>
   
   <author>
@@ -16,13 +16,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>简单的网页版网络直播实现</title>
+    <link href="http://www.slowshiki.cn/2017/03/16/simplelive/"/>
+    <id>http://www.slowshiki.cn/2017/03/16/simplelive/</id>
+    <published>2017-03-16T14:22:22.000Z</published>
+    <updated>2017-03-16T14:24:40.241Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>简单的网页版网络直播实现</strong><br>突发奇想想做外网到内网的网络直播免流量转播，找了下现有的简单模块搭建了一个简陋的网页直播平台。<br></p>
+<p>服务端直接采用windows端的Nginx做服务器，配合Nginx-RTMP模块（RTMP是Adobe Systems公司为Flash播放器和服务器之间音频、视频和数据传输开发的私有协议）,开一个端口实现对视频推流的接收。<br></p>
+<p>网页端使用Nginx的另一个端口，html+js模块直接播放RTMP流。</p>
+<p><img src="http://slowshiki.cn/pagepic/2/2.jpg" alt=""><br><a id="more"></a><br>直播流采用常用的OBS.<br></p>
+<p><img src="http://slowshiki.cn/pagepic/2/3.jpg" alt=""></p>
+<p>Nginx跑起来之后OBS就可以推流了，在网页端就可以看到直播效果了，可能是模块本身设计or机器配置的问题，本机观看效果尚可，网间测试不太流畅。<br></p>
+<p><img src="http://slowshiki.cn/pagepic/2/1.jpg" alt=""><br>看来如果想做一个位于校园网or IPV6协议网络直（盗）播平台也不是很容易，还是需要庞大的硬件资源支撑&amp;盗播可能会被请喝茶吧。<br></p>
+<p>github:<a href="https://github.com/qyc0129/SimpleNetLive" title="https://github.com/qyc0129/SimpleNetLive" target="_blank" rel="external">https://github.com/qyc0129/SimpleNetLive
+</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;简单的网页版网络直播实现&lt;/strong&gt;&lt;br&gt;突发奇想想做外网到内网的网络直播免流量转播，找了下现有的简单模块搭建了一个简陋的网页直播平台。&lt;/br&gt;&lt;/p&gt;
+&lt;p&gt;服务端直接采用windows端的Nginx做服务器，配合Nginx-RTMP模块（RTMP是Adobe Systems公司为Flash播放器和服务器之间音频、视频和数据传输开发的私有协议）,开一个端口实现对视频推流的接收。&lt;/br&gt;&lt;/p&gt;
+&lt;p&gt;网页端使用Nginx的另一个端口，html+js模块直接播放RTMP流。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://slowshiki.cn/pagepic/2/2.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="coding" scheme="http://www.slowshiki.cn/categories/coding/"/>
+    
+    
+      <category term="live" scheme="http://www.slowshiki.cn/tags/live/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Macbook连接不上bupt-mobile的解决办法</title>
     <link href="http://www.slowshiki.cn/2017/02/28/buptmobile/"/>
     <id>http://www.slowshiki.cn/2017/02/28/buptmobile/</id>
     <published>2017-02-28T15:23:23.000Z</published>
-    <updated>2017-02-28T14:47:24.397Z</updated>
+    <updated>2017-02-28T14:59:48.767Z</updated>
     
-    <content type="html"><![CDATA[<p>校园网升级后学校的bupt-mobile无法使用电脑链接（有时无法链接，有的人可以），前身dot1x好像是由于协议原因电脑无法连接，原解决办法疑似失效（待考证）。<br><br>猜测目前是根据请求的mac地址进行了拒绝。<br><br>mac地址无法直接判断出设备类型，但是可以通过其特征码（即MAC地址的前六位）判断出网卡的类型，从而判断出设备类型。<br><br>Example:<br><a href="http://aruljohn.com/mac.pl" target="_blank" rel="external">http://aruljohn.com/mac.pl</a><br><br>(需翻墙)</p>
+    <content type="html"><![CDATA[<p><title>我是标题，我在title标签内，我显示在IE最顶部标题地方</title><br>校园网升级后学校的bupt-mobile无法使用电脑链接（有时无法链接，有的人可以），前身dot1x好像是由于协议原因电脑无法连接，原解决办法疑似失效（待考证）。<br><br>猜测目前是根据请求的mac地址进行了拒绝。<br><br>mac地址无法直接判断出设备类型，但是可以通过其特征码（即MAC地址的前六位）判断出网卡的类型，从而判断出设备类型。<br><br>Example:<br><a href="http://aruljohn.com/mac.pl" target="_blank" rel="external">http://aruljohn.com/mac.pl</a><br><br>(需翻墙)</p>
 <p>例如macbook的网卡物理地址可以查出是tplink产的 <br><br>由于该类型的没有移动端网卡 自然可以把tplink类的归位pc不予链接wifi</p>
 <p>MAC Address/OUI     Vendor {Company}</p>
 <p>00:1D:0F        TP-LINK TECHNOLOGIES CO.,LTD.</p>
@@ -43,7 +77,7 @@ os.popen(command)
     
     <summary type="html">
     
-      &lt;p&gt;校园网升级后学校的bupt-mobile无法使用电脑链接（有时无法链接，有的人可以），前身dot1x好像是由于协议原因电脑无法连接，原解决办法疑似失效（待考证）。&lt;/br&gt;&lt;br&gt;猜测目前是根据请求的mac地址进行了拒绝。&lt;/br&gt;&lt;br&gt;mac地址无法直接判断出设备类型，但是可以通过其特征码（即MAC地址的前六位）判断出网卡的类型，从而判断出设备类型。&lt;/br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;a href=&quot;http://aruljohn.com/mac.pl&quot;&gt;http://aruljohn.com/mac.pl&lt;/a&gt;&lt;/br&gt;&lt;br&gt;(需翻墙)&lt;/p&gt;
+      &lt;p&gt;&lt;title&gt;我是标题，我在title标签内，我显示在IE最顶部标题地方&lt;/title&gt;&lt;br&gt;校园网升级后学校的bupt-mobile无法使用电脑链接（有时无法链接，有的人可以），前身dot1x好像是由于协议原因电脑无法连接，原解决办法疑似失效（待考证）。&lt;/br&gt;&lt;br&gt;猜测目前是根据请求的mac地址进行了拒绝。&lt;/br&gt;&lt;br&gt;mac地址无法直接判断出设备类型，但是可以通过其特征码（即MAC地址的前六位）判断出网卡的类型，从而判断出设备类型。&lt;/br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;a href=&quot;http://aruljohn.com/mac.pl&quot;&gt;http://aruljohn.com/mac.pl&lt;/a&gt;&lt;/br&gt;&lt;br&gt;(需翻墙)&lt;/p&gt;
 &lt;p&gt;例如macbook的网卡物理地址可以查出是tplink产的 &lt;/br&gt;&lt;br&gt;由于该类型的没有移动端网卡 自然可以把tplink类的归位pc不予链接wifi&lt;/p&gt;
 &lt;p&gt;MAC Address/OUI     Vendor {Company}&lt;/p&gt;
 &lt;p&gt;00:1D:0F        TP-LINK TECHNOLOGIES CO.,LTD.&lt;/p&gt;

@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://www.slowshiki.cn/2017/03/16/simplelive/</loc>
+    <lastmod>2017-03-16T14:24:40.241Z</lastmod>
+    <data>
+        <display>
+        <title>简单的网页版网络直播实现</title>
+        <pubTime>2017-03-16T14:22:22.000Z</pubTime>
+        
+        <tag>live</tag>
+         
+         
+           
+             
+              <breadCrumb title="coding" url="http://www.slowshiki.cn/categories/coding/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.slowshiki.cn/2017/02/28/buptmobile/</loc>
-    <lastmod>2017-02-28T14:47:24.397Z</lastmod>
+    <lastmod>2017-02-28T14:59:48.767Z</lastmod>
     <data>
         <display>
         <title>Macbook连接不上bupt-mobile的解决办法</title>
